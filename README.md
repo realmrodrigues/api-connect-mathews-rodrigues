@@ -1,78 +1,74 @@
-🚀 API Connect
+# API Connect - Gerenciamento de Usuários
 
-API REST para gerenciamento de usuários, desenvolvida como MVP utilizando Node.js e Express.
+API REST simples e funcional para gerenciamento de usuários, desenvolvida como MVP (Produto Mínimo Viável).
 
+## 🎯 Objetivo
 
+Fornecer um conjunto completo de endpoints RESTful para realizar as operações básicas de CRUD (Create, Read, Update e Delete) de usuários, com validação de entrada, tratamento de erros e respostas padronizadas em JSON.
 
+## 🛠️ Tecnologias Utilizadas
 
+- **Node.js**
+- **Express.js**
+- Persistência em memória (array)
 
+## 📋 Pré-requisitos
 
-📌 Sobre o projeto
+- Node.js instalado (versão 16 ou superior)
+- npm (já incluso no Node.js)
 
-O API Connect é uma API REST simples para gerenciamento de usuários, oferecendo as principais operações de CRUD:
+## 🚀 Como executar localmente
 
-➕ Criar usuários
-📋 Listar usuários
-🔎 Buscar usuários por ID
-✏️ Atualizar usuários
-🗑️ Remover usuários
+1. Clone o repositório:
+```bash
+git clone https://github.com/realmrodrigues/api-connect-mathews-rodrigues.git
+cd api-connect-mathews-rodrigues
+```
 
-A API também conta com validação de dados, tratamento de erros, validação de e-mail e prevenção de e-mails duplicados.
-
-🛠️ Tecnologias
-Tecnologia	Utilização
-🟢 Node.js	Runtime JavaScript
-⚡ Express.js	Framework para API REST
-💾 Array	Persistência em memória
-📦 npm	Gerenciamento de dependências
-🚀 Instalação
-Pré-requisitos
-
-Antes de começar, você precisa ter instalado:
-
-Node.js 16+
-npm
-1. Clone o projeto
-git clone https://github.com/realmrodrigues/backend-csv.git
-cd backend-csv
-
-2. Instale as dependências
+2. Instale as dependências:
+```bash
 npm install
+```
 
-3. Execute a aplicação
-node server.js
+3. Inicie o servidor:
+```bash
+npm start
+```
 
-
-A API estará disponível em:
-
+4. A API estará disponível em:
+```
 http://localhost:3000
+```
 
-🔄 Desenvolvimento
+> Dica: Para desenvolvimento, utilize `npm run dev` para reinício automático.
 
-Para utilizar o nodemon e reiniciar o servidor automaticamente:
+## 📡 Endpoints
 
-npx nodemon server.js
-
-📡 API
-
-Base URL
-
+### Base URL
+```
 http://localhost:3000
+```
 
-Endpoints disponíveis
-Método	Rota	Descrição	Status
-GET	/	Status da API	200
-GET	/users	Lista usuários	200
-GET	/users/:id	Busca usuário	200
-POST	/users	Cria usuário	201
-PUT	/users/:id	Atualiza usuário	200
-DELETE	/users/:id	Remove usuário	204
-🧪 Exemplos
+| Método   | Endpoint       | Descrição                    | Status de Sucesso |
+|----------|----------------|------------------------------|-------------------|
+| `GET`    | `/`            | Status da API                | 200               |
+| `GET`    | `/users`       | Lista todos os usuários      | 200               |
+| `GET`    | `/users/:id`   | Busca usuário por ID         | 200               |
+| `POST`   | `/users`       | Cria um novo usuário         | 201               |
+| `PUT`    | `/users/:id`   | Atualiza um usuário          | 200               |
+| `DELETE` | `/users/:id`   | Remove um usuário            | 204               |
+
+---
+
+### Exemplos de Requisições
+
+#### 1. Listar todos os usuários
+```http
 GET /users
+```
 
-Lista todos os usuários cadastrados.
-
-Response 200 OK
+**Resposta (200 OK):**
+```json
 {
   "data": [
     {
@@ -82,15 +78,15 @@ Response 200 OK
     }
   ]
 }
+```
 
-GET /users/:id
-
-Busca um usuário pelo seu ID.
-
-Request
+#### 2. Buscar usuário por ID
+```http
 GET /users/1
+```
 
-Response 200 OK
+**Resposta de sucesso (200 OK):**
+```json
 {
   "data": {
     "id": 1,
@@ -98,17 +94,17 @@ Response 200 OK
     "email": "ana.silva@email.com"
   }
 }
+```
 
-Response 404 Not Found
+**Resposta de erro (404 Not Found):**
+```json
 {
   "error": "Usuário com ID 999 não encontrado."
 }
+```
 
-POST /users
-
-Cria um novo usuário.
-
-Request
+#### 3. Criar novo usuário
+```http
 POST /users
 Content-Type: application/json
 
@@ -116,8 +112,10 @@ Content-Type: application/json
   "name": "Mariana Oliveira",
   "email": "mariana.oliveira@email.com"
 }
+```
 
-Response 201 Created
+**Resposta de sucesso (201 Created):**
+```json
 {
   "data": {
     "id": 3,
@@ -125,17 +123,17 @@ Response 201 Created
     "email": "mariana.oliveira@email.com"
   }
 }
+```
 
-Response 400 Bad Request
+**Resposta de erro (400 Bad Request):**
+```json
 {
   "error": "O campo \"email\" é obrigatório e deve ser uma string não vazia."
 }
+```
 
-PUT /users/:id
-
-Atualiza os dados de um usuário existente.
-
-Request
+#### 4. Atualizar usuário
+```http
 PUT /users/1
 Content-Type: application/json
 
@@ -143,8 +141,10 @@ Content-Type: application/json
   "name": "Ana Silva Atualizada",
   "email": "ana.atualizada@email.com"
 }
+```
 
-Response 200 OK
+**Resposta (200 OK):**
+```json
 {
   "data": {
     "id": 1,
@@ -152,47 +152,30 @@ Response 200 OK
     "email": "ana.atualizada@email.com"
   }
 }
+```
 
-DELETE /users/:id
-
-Remove um usuário pelo ID.
-
-Request
+#### 5. Remover usuário
+```http
 DELETE /users/2
+```
 
-Response
-204 No Content
+**Resposta:** `204 No Content` (sem corpo)
 
+---
 
-A resposta 204 não possui corpo.
+## ✅ Validações implementadas
 
-✅ Validações
+- Campos `name` e `email` obrigatórios
+- Validação de formato de e-mail
+- Impedimento de e-mails duplicados
+- Tratamento de ID inválido ou inexistente
+- Respostas padronizadas com as chaves `data` (sucesso) e `error` (falha)
 
-A API possui algumas regras para garantir a consistência dos dados:
+## 📝 Observações
 
-name é obrigatório
-email é obrigatório
-email deve possuir um formato válido
-E-mails duplicados não são permitidos
-IDs inválidos são rejeitados
-Usuários inexistentes retornam 404
-Dados inválidos retornam 400
-📦 Padrão de respostas
-✅ Sucesso
-{
-  "data": {}
-}
+- Os dados são armazenados **em memória**. Ao reiniciar o servidor, os registros voltam ao estado inicial.
+- Esta é uma versão MVP, ideal para estudos e prototipagem.
 
-❌ Erro
-{
-  "error": "Mensagem de erro."
-}
+## 📄 Licença
 
-
-A utilização de um formato padronizado facilita o consumo da API por aplicações frontend e outros clientes HTTP.
-
-💾 Persistência
-
-Atualmente, os dados são armazenados em memória utilizando um Array.
-
-Isso significa que os usuários cadastrados serão perdidos quando o servidor for reiniciado.
+Este projeto foi desenvolvido para fins educacionais.
